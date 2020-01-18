@@ -3,16 +3,20 @@ import bs4
 import os
 #from apscheduler.schedulers 
 
-def scrapeAlberta:
+data_sources = []
+def extractSource(data_sources, province):
+	return 0
+	
+def scrapeAlberta(source):
 	return 0
 
-def scrapeOntario:
+def scrapeOntario(source):
 	return 0
 
-def scrapeNB:
+def scrapeNB(source):
 	return 0
 
-def scrapeNS:
+def scrapeNS(source):
 	return 0
 
 def mainRun:
