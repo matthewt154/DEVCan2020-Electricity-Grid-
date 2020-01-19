@@ -6,6 +6,7 @@ import lxml.html as lh
 import urllib.request, urllib.error, urllib.parse
 import pandas as pd 
 import openpyxl
+import csv
 #from apscheduler.schedulers 
 
 #data sources 
@@ -160,6 +161,30 @@ def scrapeNS(source):
 	2- First column has date and hour. Split these so we can isolate date and time
 	3- 2nd column has load value. Write this to correct .csv file 
 	'''
+	#Not complete code yet
+	#receiving the url of the NS website
+	page = requests.get(source)
+	#saving data in a tree
+	tree = lh.fromstring(page.content)
+	#retrieving fref of csv file by parsing the website
+	csv_files_link = tree.xpath('//a[@title = "CSV"]/@href')
+	#the most recent csv file is in the first position
+	most_recent_csv_file = csv_files_link[0]
+	#opening csv file
+	res = urllib.request.urlopen("https://www.nspower.ca"+most_recent_csv_file)
+	#creating a list to save the data
+	csv_lines = []
+	#adding the rows of the csv file to the list
+	for row in res:
+                csv_lines.append(row)
+        #grabbing the first 20 elements in csv_lines
+        relevant_lines = csv_lines[:20]
+        
+        #unable to complete code but this what we have left so far. Issue: relevant_lines is read as a byte-code instead of a string code which means that we can't check if a string is in relevant_lines
+        '''
+        for i in range(len(relevant_lines)-1):
+                if "Date/time,Load [MW]\r\n'" in relevant_lines[i]:
+        '''             
 
 	#TO_DO put to excel file 
 	return 0
