@@ -55,11 +55,20 @@ print(finalOutput)
 
 #add em all up 
 import pandas as pd 
-df=pd.DataFrame(columns=['Summary','Energy'])
-i=0
+#df=pd.DataFrame(columns=['Summary','Energy'])
+writer =pd.ExcelWriter('testPandas.xlsx')
+df1 = pd.read_excel('testPandas.xlsx')
+df2=pd.DataFrame(['SummaryTest'],['EnergyTest'])
+df2.insert (1,'Energy','EnergyTest')
+df1.to_excel(writer,startrow=0,index=False)
+df2.to_excel(writer,startrow=len(df1)+1,header=False,index=False)
+writer.save()
+'''
+i=408
 for sublist in finalOutput:
 	i+=1
 	print(sublist)
 	df=df.append({'Summary': i,'Energy':sublist}, ignore_index=True)
     
 df.to_csv('AESO_Summary_.csv',index=False,encoding='cp1252')
+'''

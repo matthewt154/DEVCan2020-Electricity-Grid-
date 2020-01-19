@@ -4,6 +4,7 @@ import bs4
 import os
 import lxml.html as lh
 import urllib.request, urllib.error, urllib.parse
+import pandas as pd 
 #from apscheduler.schedulers 
 
 #data sources 
