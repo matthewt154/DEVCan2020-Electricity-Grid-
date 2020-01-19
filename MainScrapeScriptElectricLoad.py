@@ -5,6 +5,7 @@ import os
 import lxml.html as lh
 import urllib.request, urllib.error, urllib.parse
 import pandas as pd 
+import openpyxl
 #from apscheduler.schedulers 
 
 #data sources 
@@ -14,7 +15,28 @@ data_sources = ['http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet',
 				'https://www.nspower.ca/oasis/monthly-reports/hourly-total-net-nova-scotia-load',
 				'https://tso.nbpower.com/Public/en/system_information_archive.aspx']
 
-def scrapeAlberta(source):
+
+def addToExcel (province,data):
+	#method to add data to specific province worksheet 
+	#param data is a list with indexes (0:date, 1:hour, 2:Load (MW))
+	wb =openpyxl.load_workbook('CANDev2020 Energy Loads.xlsx') #excel book to write to 
+	
+	#sheet=wb[str(province)]
+	sheet=wb[province]
+	cnt=0; 
+	while (True):
+		cnt+=1 
+		print(cnt)
+		if ((sheet.cell(row=cnt, column=1).value) is None):
+			break
+	#at empty cell, add new values 
+	sheet.cell(row=cnt, column=1).value=data[0] #date
+	sheet.cell(row=cnt, column=2).value=data[1] #hour
+	sheet.cell(row=cnt, column=3).value=data[2] #load 
+	wb.save('CANDev2020 Energy Loads.xlsx')
+
+
+def scrapeAlberta(source,province):
 	'''
 	1-preliminary check to see if hour is correct (also record hour)
 	2-Go to AIL value and isolate it
@@ -38,27 +60,23 @@ def scrapeAlberta(source):
 			format_last_update = l_td[i]
 	#Storing the data for the date of the last update of this information
 	full_date_of_last_update = format_last_update.split()
-	last_update_month = full_date_of_last_update[3]
-	last_update_date = full_date_of_last_update[4]
-	last_update_year = full_date_of_last_update[5]
+	last_update_month = full_date_of_last_update[3].rstrip()
+	last_update_date = full_date_of_last_update[4].rstrip()
+	last_update_year = full_date_of_last_update[5].rstrip()
 	last_update_time = full_date_of_last_update[6]
 	#Checking to see if there is a comma in the string for the date so that we remove
 	if "," in last_update_date:
-		last_update_date = last_update_date.replace(","," ")
+		last_update_date = last_update_date.replace(",","")
 	print(alberta_value)
-
+	real_date=str(last_update_date+"-"+last_update_month+'-'+last_update_year)
 	#TO_DO put to excel file 
-	writer =pd.ExcelWriter('CANDev2020 Energy Loads.xlsx')
-	df1 = pd.read_excel('CANDev2020 Energy Loads.xlsx')
-	df2=pd.DataFrame()
-	df2.insert (1,'Energy','EnergyTest')
-	df1.to_excel(writer,startrow=0,index=False)
-	df2.to_excel(writer,startrow=len(df1)+1,header=False,index=False)
-	writer.save()
+	data=[real_date, last_update_time,alberta_value]
+	addToExcel(province, data)
+	
 
 	return 0
 
-def scrapeOntario(source):
+def scrapeOntario(source,province):
 	'''
 	1-Download correct XML file from source page (onto machine)
 	2- Isolate correct date and time column from XML
@@ -83,10 +101,23 @@ def scrapeOntario(source):
 	    #print(content)
 	    bs_content = bs(content, "lxml")
 	result =bs_content.find_all("energyvalue")
+	dateParse =bs_content.find_all("day")
+	#print(dateParse)
+	hourParse = bs_content.find_all("hour")
 	#print (result)
 	newres = []
+	newDate = []
+	newHour = []
 	for all in result:
 		newres.append(int(all.find("output").get_text()))
+	#getting date 
+	for all in dateParse:
+
+		newDate.append(str(all)[5:15])
+
+	#getting hour
+	for all in hourParse:
+		newHour.append(str(all)[6:8])
 	#print(newres)
 	finalOutput=[]
 	while (newres):
@@ -94,11 +125,15 @@ def scrapeOntario(source):
 		for i in range(6):
 			sum+=newres.pop() #add all 6 columns of energy types for final load 
 		finalOutput.append(sum)
-	finalOutput.reverse()
-	print(finalOutput)
+	finalOutput.reverse() #most recent is first value 
+	#getting date and hour 
+	print(newDate.pop())
+	print(newHour.pop())
+	print(finalOutput.pop())
 
 	#TO_DO put to excel file 
-
+	data=[newDate.pop(), newHour.pop(), finalOutput.pop()]
+	addToExcel(province,data)
 	return 0
 
 def scrapeNB(source):
@@ -125,5 +160,5 @@ def scrapeNS(source):
 def mainRun():
 	return 0
 
-scrapeAlberta(data_sources[0])
-scrapeOntario(data_sources[1])
+scrapeAlberta(data_sources[0],'Alberta')
+scrapeOntario(data_sources[1],'Ontario')

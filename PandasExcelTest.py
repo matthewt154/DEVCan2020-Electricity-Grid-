@@ -55,17 +55,26 @@ print(finalOutput)
 
 #add em all up 
 import pandas as pd 
+import openpyxl
+from openpyxl.styles import Font 
 #df=pd.DataFrame(columns=['Summary','Energy'])
-writer =pd.ExcelWriter('CANDev2020 Energy Loads.xlsx')
+wb =openpyxl.load_workbook('CANDev2020 Energy Loads.xlsx')
+#writer =pd.ExcelWriter('CANDev2020 Energy Loads.xlsx')
+'''
 df1 = pd.read_excel('CANDev2020 Energy Loads.xlsx')
 df2=pd.DataFrame()
 df2.insert (0,'Hour','Energy')
 df1.to_excel(writer,startrow=0,index=False)
 df2.to_excel(writer,startrow=len(df1)+1,header=False,index=False)
+'''
 #wb=Workbook()
-ws1=writer.add_sheet('testnew')
-df1.to_excel(writer,'testnew')
-writer.save()
+sheet=wb['testnew']
+sheet.cell(row=1, column=2).value='Test'
+#italic24Font = Font(size=24, italic=True) 
+#sheet['A1']='italic24Font'
+#df1.to_excel(writer,'testnew')
+wb.save('CANDev2020 Energy Loads.xlsx')
+#writer.save()
 '''
 i=408
 for sublist in finalOutput:
