@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup as bs
 import bs4 
 import os
 import lxml.html as lh
+import urllib.request, urllib.error, urllib.parse
 #from apscheduler.schedulers 
 
+#data sources 
 #0- Ontario, 1-Alberta, 2-Nova Scotia, 3-New Brunswick
 data_sources = ['http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet',
-				'Generator Output by Fuel Type Hourly Report.xml',
+				'http://reports.ieso.ca/public/GenOutputbyFuelHourly/PUB_GenOutputbyFuelHourly_2020_v17.xml',
 				'https://www.nspower.ca/oasis/monthly-reports/hourly-total-net-nova-scotia-load',
 				'https://tso.nbpower.com/Public/en/system_information_archive.aspx']
 
@@ -55,12 +57,17 @@ def scrapeOntario(source):
 	3- Get value (TOTAL OUTPUT) from last column
 	4- Write to .csv file in correct column
 	'''
-
-	#TO_DO download 
+	#downloading file from web to device and overwriting
+	response = urllib.request.urlopen(source)
+	webContent = str(response.read())
+	filename='Generator Output by Fuel Type Hourly Report.xml'
+	f = open(filename, 'w')
+	f.write(webContent)
+	f.close
 
 	content = []
 	# Read the XML file
-	with open(source, "r") as file:
+	with open(filename, "r") as file:
 	    # Read each line in the file, readlines() returns a list of lines
 	    content = file.readlines()
 	    # Combine the lines in the list into a string
