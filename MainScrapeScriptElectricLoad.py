@@ -26,7 +26,7 @@ def addToExcel (province,data):
 	cnt=0; 
 	while (True):
 		cnt+=1 
-		print(cnt)
+		#print(cnt)
 		if ((sheet.cell(row=cnt, column=1).value) is None):
 			break
 	#at empty cell, add new values 
@@ -67,13 +67,13 @@ def scrapeAlberta(source,province):
 	#Checking to see if there is a comma in the string for the date so that we remove
 	if "," in last_update_date:
 		last_update_date = last_update_date.replace(",","")
-	print(alberta_value)
+	#print(alberta_value)
 	real_date=str(last_update_date+"-"+last_update_month+'-'+last_update_year)
 	#TO_DO put to excel file 
 	data=[real_date, last_update_time,alberta_value]
 	addToExcel(province, data)
 	
-
+	print ("Alberta scraped successfully")
 	return 0
 
 def scrapeOntario(source,province):
@@ -117,23 +117,30 @@ def scrapeOntario(source,province):
 
 	#getting hour
 	for all in hourParse:
-		newHour.append(str(all)[6:8])
-	#print(newres)
+		#print (str(all).find("/",7))
+		newHour.append(str(all)[6:str(all).find("<",7)])
+	#print(newHour)
 	finalOutput=[]
 	while (newres):
 		sum=0
 		for i in range(6):
 			sum+=newres.pop() #add all 6 columns of energy types for final load 
 		finalOutput.append(sum)
-	finalOutput.reverse() #most recent is first value 
+	#finalOutput.reverse() #most recent is first value 
 	#getting date and hour 
-	print(newDate.pop())
-	print(newHour.pop())
-	print(finalOutput.pop())
+	#print(newDate.pop())
+	#print(newHour.pop())
+	#print(finalOutput.pop())
 
 	#TO_DO put to excel file 
-	data=[newDate.pop(), newHour.pop(), finalOutput.pop()]
-	addToExcel(province,data)
+	#updates every 24 hours so will pop 24 values 
+	finalDate =newDate.pop()
+	for i in range(24):
+		finalHour= str(newHour.pop()+":00")
+		data=[finalDate, finalHour, finalOutput.pop()]
+		addToExcel(province,data)
+
+	print ("Ontario scraped successfully")
 	return 0
 
 def scrapeNB(source):
@@ -162,7 +169,7 @@ def mainRun():
 	scrapeOntario(data_sources[1],'Ontario')
 	return 0
 
-#%%%%%%%%%%%%%RUNNING PROGRAM every minute using scheduler
+#%%%%%%%%%%%%%RUNNING PROGRAMfor time using scheduler
 import datetime
 import time
 from apscheduler.scheduler import Scheduler
@@ -178,7 +185,9 @@ def job_function():
     print(datetime.datetime.now())
     time.sleep(20)
 
-# Schedules job_function to be run once each minute
-sched.add_cron_job(job_function,  hour='1-24')
+# Schedules job_function to be run once (depends on when province website updates)
+sched.add_cron_job(scrapeAlberta(data_sources[0],'Alberta'),  hour='0-23') #alberta updates every hour
+
+sched.add_cron_job(scrapeOntario(data_sources[1],'Ontario'),  day='1-31') #Ontario updates every day 
 
 #mainRun() #running the main program
