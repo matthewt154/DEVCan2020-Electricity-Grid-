@@ -11,7 +11,7 @@ soup=BeautifulSoup(f, features='lxml')
 #we should record when the table was last updated, which is on the page with
 # the text "Last Update:"
 
-updated=soup.find(string=re.compile("Last Update")) #re.compile lets us search using just part of the string
+updated=soupf.ind(string=re.compile("Last Update")) #re.compile lets us search using just part of the string
 print(updated)
 #keep only the date and time
 updated=updated.split(':')[1].strip()
