@@ -158,7 +158,9 @@ def scrapeNS(source):
 	return 0
 
 def mainRun():
+	scrapeAlberta(data_sources[0],'Alberta')
+	scrapeOntario(data_sources[1],'Ontario')
 	return 0
 
-scrapeAlberta(data_sources[0],'Alberta')
-scrapeOntario(data_sources[1],'Ontario')
+#%%%%%%%%%%%%%RUNNING PROGRAM
+mainRun() #running the main program
