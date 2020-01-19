@@ -24,6 +24,8 @@ def scrapeOntario(source):
 	3- Get value (TOTAL OUTPUT) from last column
 	4- Write to .csv file in correct column
 	'''
+	int value
+	 
 	return 0
 
 def scrapeNB(source):
