@@ -169,6 +169,11 @@ def mainRun():
 	scrapeOntario(data_sources[1],'Ontario')
 	return 0
 
+#%%%%%%%%MAIN PROGRAM RUN TEST
+
+mainRun() #running the main program
+
+
 #%%%%%%%%%%%%%RUNNING PROGRAMfor time using scheduler
 import datetime
 import time
@@ -190,4 +195,4 @@ sched.add_cron_job(scrapeAlberta(data_sources[0],'Alberta'),  hour='0-23') #albe
 
 sched.add_cron_job(scrapeOntario(data_sources[1],'Ontario'),  day='1-31') #Ontario updates every day 
 
-#mainRun() #running the main program
+
