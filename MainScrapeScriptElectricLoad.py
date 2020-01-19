@@ -162,5 +162,23 @@ def mainRun():
 	scrapeOntario(data_sources[1],'Ontario')
 	return 0
 
-#%%%%%%%%%%%%%RUNNING PROGRAM
-mainRun() #running the main program
+#%%%%%%%%%%%%%RUNNING PROGRAM every minute using scheduler
+import datetime
+import time
+from apscheduler.scheduler import Scheduler
+
+# Start the scheduler
+sched = Scheduler()
+sched.daemonic = False
+sched.start()
+
+def job_function():
+    print("Collecting data..")
+    mainRun()
+    print(datetime.datetime.now())
+    time.sleep(20)
+
+# Schedules job_function to be run once each minute
+sched.add_cron_job(job_function,  hour='1-24')
+
+#mainRun() #running the main program
