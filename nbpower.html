@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+
+<!--[if lt IE 9]> <html class="old-ie"> <!![endif]-->
+<!--[if gte IE 9|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+<head id="ctl00_Head1"><title>
+	System Information Archive
+</title><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta name="title" content="NB Power Operations" /><meta name="author" content="NB Power Operations" /><meta name="viewport" content="width=device-width" /><meta name="keywords" /><meta name="description" /><meta name="language" content="en" /><meta name="ROBOTS" content="FOLLOW,INDEX" /><link rel="shortcut icon" type="image/x-icon" href="/Public/favicon.ico" />
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=y0q5vZqF_yw7aqXtt3I6QI1POVUytQYOnyH2KJefRlMoLxRHTmbBoWu_3-6YIo3BhpkORkBs2DSrjYEmV5u6XuGv5OHTHWQu5Pfhe4UGSc48HNGPj56B8dhA8WbwWm7a" charset="UTF-8"></script><script src="/Public/Resources/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/Public/Resources/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/Public/Resources/js/jquery.placeholder.min.js" type="text/javascript"></script>
+    <script src="/Public/Resources/js/jquery.autotab.min.js" type="text/javascript"></script>
+    <script src="/Public/Resources/js/global.js" type="text/javascript"></script>
+    <script src="/Public/Resources/js/Customer/Customer.js" type="text/javascript"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="/Public/Resources/css/fonts/313064/45C4EFA9C1372F8CD.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-reset.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/jquery-ui-1.10.3.custom.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-styles.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-template.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-content.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-cms.css" />
+
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="../Resources/css/desktop.css" /><link rel="stylesheet" type="text/css" href="../Resources/css/old-ie.css" />
+	<![endif]-->
+
+    <link media="screen and (min-width:1124px)" rel="stylesheet" type="text/css" href="../Resources/css/desktop.css" /><link media="screen and (min-width:481px) and (max-width: 1123px)" rel="stylesheet" type="text/css" href="../Resources/css/tablet.css" /><link media="screen and (max-width:480px)" rel="stylesheet" type="text/css" href="../Resources/css/mobile.css" /><link rel="stylesheet" type="text/css" href="/Public/Resources/css/nbp-template-tso-overrides.css" />
+
+    <script>
+        function switchLanguageToFR() {
+            s = new String(document.location);
+            r = new String(s.replace("en", "fr"));
+            location.href = r;
+        }
+
+        // Remove empty first node in breadcrumbs (link & separator)
+        $(function () {
+            try {
+                $("div.tso-breadcrumbs span:nth-child(1) span:nth-child(2)").remove();
+                $("div.tso-breadcrumbs span:nth-child(1) span:nth-child(2)").remove();
+            } catch (e) {
+            }
+        });
+    </script>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="system_information_archive.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQ5MDUzOTM2MA9kFgJmD2QWAgIDD2QWBAIDDzwrAAUBAA8WAh4NUGF0aFNlcGFyYXRvcgUDIC8gZGQCBQ9kFgQCAQ8QZA8WDGYCAQICAgMCBAIFAgYCBwIIAgkCCgILFgwQBQExBQExZxAFATIFATJnEAUBMwUBM2cQBQE0BQE0ZxAFATUFATVnEAUBNgUBNmcQBQE3BQE3ZxAFATgFAThnEAUBOQUBOWcQBQIxMAUCMTBnEAUCMTEFAjExZxAFAjEyBQIxMmdkZAIDDxBkDxYIZgIBAgICAwIEAgUCBgIHFggQBQQyMDIwBQQyMDIwZxAFBDIwMTkFBDIwMTlnEAUEMjAxOAUEMjAxOGcQBQQyMDE3BQQyMDE3ZxAFBDIwMTYFBDIwMTZnEAUEMjAxNQUEMjAxNWcQBQQyMDE0BQQyMDE0ZxAFBDIwMTMFBDIwMTNnZGRk29OUrQvbioqWAlt0ua+EXmmo8yE=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="37B4A8A7" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWFgKX/P6ZDQLYirjOAQLZirjOAQLairjOAQLbirjOAQLcirjOAQLdirjOAQLeirjOAQLPirjOAQLAirjOAQLYivjNAQLYivTNAQLYivDNAQLa04awCgLHxPiYCQLHxIT0AQLHxNCcAwLHxPz7CwLHxIhXAsfElLIJAsfEoIkOApucnNAKS6ch2wb/tCMWKbBlntaaOUZ4WPw=" />
+</div>
+
+        <div class="headerWrapper">
+            <div class="headerContent">
+                <a href="http://www.nbpower.com/Welcome.aspx" class="hdrLogo noMobile" title="Retourner">
+                    <img src="../Resources/images/logo.png" alt="Énergie NB Power" class="noTablet noMobile" />
+                    <img src="../Resources/images/tablet/logo.png" alt="Énergie NB Power" class="noDesktop noMobile" />
+                </a>
+
+                <div class="hdrQuickLinks hdrMobileLoginUser">
+                    <div class="hdrLoginLinks"></div>
+                </div>
+
+                <div class="hdrQuickLinks">
+                    <a class="noMobile" title="Transmission User Secure Login" href="https://tso.nbpower.com/public/mms.aspx">Transmission User Secure Login</a>
+                    <a class="noMobile" title="Request Access" href="/public/en/access.aspx">Request Access</a>
+                    <a href="http://www.nbpower.com/en/contact-us" title="Contact Us">Contact Us</a>
+                    <a href="javascript:switchLanguageToFR();" title="Fran&ccedil;ais">Fran&ccedil;ais</a>
+                    
+                </div>
+                <!-- End: hdrQuickLinks -->
+
+                <div class="hdrMobileItems noDesktop noTablet">
+                    
+                    <a id="lnkLogo" title="Return to Home Page" class="mobileLogo" href="http://www.nbpower.com/Welcome.aspx">
+                        <img src="../Resources/images/mobile/logo.png" alt="Énergie NB Power" /></a>
+                    <a id="mobileSearchButton" href="#" class="mobileSearchButton"></a>
+                    <a id="mobileMenuButton" href="#" class="mobileMenuButton"></a>
+                </div>
+
+            </div>
+            <!-- End: headerContent -->
+
+            
+            <div id="menuWrapper">
+                <div id="menuElements">
+                    <ul id="menuTabs">
+                        <li class=""><a href="/Public/en/op/">Home</a></li>
+                        <li class=""><a href="/Public/en/op/transmission/tariff.aspx">Tariff</a></li>
+                        <li class=""><a href="/Public/en/op/transmission/standards.aspx">Standards of Conduct</a></li>
+                        <li class=""><a href="/Public/en/op/market/ebr.aspx">Electricity Business Rules</a></li>
+                        <li class="menuActive"><a href="/Public/en/op/market/data.aspx">Data</a></li>
+                        <li class="noDesktop noTablet">
+                            <hr />
+                        </li>
+                        <li class="noDesktop noTablet"><a title="Secure Site" href="https://tso.nbpower.com/public/mms.aspx">Transmission User Secure Login</a></li>
+                        <li class="noDesktop noTablet"><a title="Secure Site" href="/public/en/access.aspx">Request Access</a></li>
+                        <li class="noDesktop noTablet"><a href="http://www.nbpower.com/en/contact-us" title="Contact Us">Contact Us</a></li>
+                        <li class="noDesktop noTablet"><a href="javascript:switchLanguageToFR();">Fran&ccedil;ais</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <!-- End: headerWrapper -->
+
+
+        
+        <div class="tso-breadcrumbs breadcrumbContainer">
+            <span id="ctl00_SiteMapPath1"><a href="#ctl00_SiteMapPath1_SkipLink"><img alt="Skip Navigation Links" height="0" width="0" src="/Public/WebResource.axd?d=VNEmvPkG_4VI0h5Bw23lUdOJyz5ufRRl11ePZ1xkKAYU_yoG4E45tF2n8zY1&amp;t=635588618575142005" style="border-width:0px;" /></a><span><a href="/default.aspx"></a></span><span> / </span><span><a title="Transmission &amp; System Operator" href="/Public/en/op/default.aspx">Home</a></span><span> / </span><span><a title="Data" href="/Public/en/op/market/data.aspx">Data</a></span><span> / </span><span>System Info Archive</span><a id="ctl00_SiteMapPath1_SkipLink"></a></span>
+            <div class="clearFloats"></div>
+        </div>
+
+        
+        <a name="content"></a>
+        <span id="ctl00_lblTest"></span>
+        <div class="mainContent">
+            
+            
+
+    <div class="sectionContentBlock">
+
+        <h1>System Information Archive</h1>
+         
+        <p>This page is used to query historical NB Power System Information. This hourly data is made available as monthly CSV files. Select a month and a year and click on the
+         "Get Data Link" to download the appropriate CSV file.
+        </p>
+        <br />
+        <h4>Data Selection</h4>
+        <table class="styAccessSteps" style="width:20em;">
+            <tr>
+                <th>Month</th>
+                <th>Year</th>   
+                <th>&nbsp;</th>    
+            </tr>
+            <tr>
+                <td><select name="ctl00$cphMainContent$ddlMonth" id="ctl00_cphMainContent_ddlMonth">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+
+</select></td>
+                <td><select name="ctl00$cphMainContent$ddlYear" id="ctl00_cphMainContent_ddlYear">
+	<option value="2020">2020</option>
+	<option value="2019">2019</option>
+	<option value="2018">2018</option>
+	<option value="2017">2017</option>
+	<option value="2016">2016</option>
+	<option value="2015">2015</option>
+	<option value="2014">2014</option>
+	<option value="2013">2013</option>
+
+</select></td>  
+                <td>
+                    <a id="ctl00_cphMainContent_lbGetData" href="javascript:__doPostBack('ctl00$cphMainContent$lbGetData','')">Get Data</a>
+                </td>  
+            </tr>
+        </table>
+        <span id="ctl00_cphMainContent_lblMessage" style="color:Red; font-weight:bold;"></span>
+         <br />
+        <h4>Columns</h4>
+        <p>All values are measured in Mwh.</p>
+        <table class="styAccessSteps" cellspacing="2">
+            <tr>
+                <th>Column</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>NB_DEMAND</td>
+                <td>The average total demand for energy in New Brunswick</td>
+            </tr>
+            <tr>
+                <td>NB_LOAD</td>
+                <td>The average total load in New Brunswick. This is calculated as the NB_DEMAND value minus estimated Transmission losses.</td>
+            </tr>
+            <tr>
+                <td>ISO_NE</td>
+                <td>The average energy flow going to or from interfaces with ISO New England.</td>
+            </tr>
+            <tr>
+                <td>NMISA</td>
+                <td>The average energy flow going to or from interfaces with Northern Maine ISA.</td>
+            </tr>
+            <tr>
+                <td>HYDRO_QUEBEC</td>
+                <td>The average energy flow going to or from interfaces with Hydro Quebec.</td>
+            </tr>
+            <tr>
+                <td>NOVA_SCOTIA</td>
+                <td>The average energy flow going to or from interfaces with Nova Scotia.</td>
+            </tr>
+            <tr>
+                <td>PEI</td>
+                <td>The average energy flow going to or from interfaces with Prince Edward Island.</td>
+            </tr>
+
+        </table>
+        <br />
+        <h5>Sign Convention:</h5>
+        <p>Positive schedule values indicate exports from New Brunswick. Negative schedule values indicate imports to New Brunswick.</p>
+    </div>
+
+            <div class="clearFloats"></div>
+        </div>
+
+        <div class="footerWrapper ">
+        </div>
+        <div class="footerLinksWrapper">
+            <!--*** Temporary HTML until we have the content updated -->
+            <div class="ftrLinks">
+                <div class="ftrNBPInfo">
+                    <div id="ftrLogo">
+                        <a href="http://www.nbpower.com/Welcome.aspx" title="Return to Home Page">
+                            <img src="/Public/Resources/images/logo.png" alt="Énergie NB Power"></a>
+                    </div>
+                </div>
+                <div class="ftrLinksCol noDesktop">
+                    <hr class="shortHR darkBlue">
+                    <a href="http://www.nbpower.com/en/terms-of-use" title="Terms of Use">Terms of Use</a>
+                    <a href="http://www.nbpower.com/en/privacy" title="Privacy">Privacy Policy</a>
+                    <a href="http://www.nbpower.com/Open/EmployeeLogin.aspx" title="Employee Login">Employee Login</a>
+
+                </div>
+                <div class="ftrLinksCol noMobile">
+                    <div class="ftrLinksTitle">Company</div>
+                    <a href="http://www.nbpower.com/en/contact-us" title="Contact Us">Contact Us</a>
+                    <a href="http://www.nbpower.com/en/about-us/news-media-centre" title="News &amp; Media Centre">News &amp; Media</a>
+                    <a href="http://www.nbpower.com/en/about-us/careers" title="Careers">Careers</a>
+                    <a href="http://www.nbpower.com/en/about-us/tenders-contracts" title="Tenders &amp; Contracts">Tenders &amp; Contracts</a>
+                    
+                    <a href="http://www.nbpower.com/en/privacy" title="Privacy">Privacy Policy</a>
+                    <a href="http://www.nbpower.com/en/terms-of-use" title="Terms of Use">Terms of Use</a>
+                    <a href="http://www.nbpower.com/Open/EmployeeLogin.aspx" title="Employee Login">Employee Login</a>
+                </div>
+
+                <div class="ftrLinksCol noMobile ftrLinksCol-tso">
+                    <div class="ftrLinksTitle">Transmission & System Operator</div>
+                    <a href="/Public/en/op/transmission/tariff.aspx">Tariff</a>
+                    <a href="/Public/en/op/transmission/standards.aspx">Standards of Conduct</a>
+                    <a href="/Public/en/op/market/ebr.aspx">Electricity Business Rules</a>
+                    <a href="/Public/en/op/market/data.aspx">Data</a>
+                    <a title="Site Map" href="/Public/en/sitemap.aspx">Site Map</a>
+                </div>
+                <div class="clearFloats"></div>
+            </div>
+            <!-- End: ftrLinks -->
+        </div>
+
+
+
+        <p class="copyright">&copy; Copyright 2020</p>
+
+        <!--
+    <script type="text/javascript">
+        // Google analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5154280-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();  
+    </script>
+    -->
+
+    </form>
+
+</body>
+</html>

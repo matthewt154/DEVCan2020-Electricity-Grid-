@@ -143,15 +143,72 @@ def scrapeOntario(source,province):
 	print ("Ontario scraped successfully")
 	return 0
 
-def scrapeNB(source):
+def scrapeNB(source,province, Intmonth, Intyear):
 	'''
 	1- Change webpage to change date to last month then click Get Data 
 	2- Navigates to .aspx file
 	3. Go to first column to check date then second column for hour 
 	4- 3rd column has load value we want. Write this to correct .csv file column 
 	'''
+	from selenium import webdriver
+	#downloading to a .txt file 
+	url='https://tso.nbpower.com/Public/en/system_information_archive.aspx'
+	driver=webdriver.Chrome(executable_path='C:/Users/tran/Desktop/DEVCan2020/DEVCan2020-Electricity-Grid-/chromedriver.exe')
+	driver.get(source) #open up webpage using selenium webdriver
+	year = driver.find_element_by_xpath('//select[@id="ctl00_cphMainContent_ddlYear"]')
 
-	#TO_DO put to excel file 
+	xpath_year=str('//option[@value="'+str(Intyear)+'"]')
+	print(xpath_year)
+	all_years = year.find_element_by_xpath(xpath_year)
+	all_years.click() #click the 2019 option 
+
+	month = driver.find_element_by_xpath('//select[@id="ctl00_cphMainContent_ddlMonth"]')
+	all_months = month.find_element_by_xpath('//option[@value="'+str(Intmonth)+'"]')
+	all_months.click() #click month option 
+	
+
+	get_data=driver.find_element_by_xpath('//a [@id="ctl00_cphMainContent_lbGetData"]')
+	get_data.click()
+
+	unfiltered_data=driver.find_element_by_xpath('//pre').text
+	driver.close()
+
+	#print(unfiltered_data)
+	filename='NBData.txt' #writing to the text file 
+	f = open(filename, 'w')
+	f.write(unfiltered_data)
+
+	f.close
+
+	f=open(filename, 'r')
+	lines =f.readlines() #list of all lines of data in txt 
+	#print(lines[2])
+	#updated every month so download entire month 
+	date=[]
+	hour=[]
+	load=[]
+	for i in range (1, len(lines)):
+		s=lines[i]
+		date.append(s[:10])
+		hour.append(s[11:16])
+		load.append(s[17:21])
+	
+	#print (date)
+	#print(hour)
+	#print(load)
+	
+	f.close
+	#TO_DO put to excel file
+	for d in range (len(date)):
+		finalDate =date.pop()
+		for i in range(24): #24 hour intervals 
+			finalHour=hour.pop()
+			finalLoad = load.pop()
+			data=[finalDate, finalHour, finalLoad]
+			addToExcel(province,data)
+		
+
+	print ("NB scraped successfully") 
 	return 0
 
 def scrapeNS(source):
@@ -167,6 +224,7 @@ def scrapeNS(source):
 def mainRun():
 	scrapeAlberta(data_sources[0],'Alberta')
 	scrapeOntario(data_sources[1],'Ontario')
+	#scrapeNB(data_sources[3],'NB',1,2019)  #not working corrupts the file 
 	return 0
 
 #%%%%%%%%MAIN PROGRAM RUN TEST
