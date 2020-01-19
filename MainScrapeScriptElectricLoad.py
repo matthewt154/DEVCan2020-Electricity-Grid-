@@ -48,6 +48,13 @@ def scrapeAlberta(source):
 	print(alberta_value)
 
 	#TO_DO put to excel file 
+	writer =pd.ExcelWriter('CANDev2020 Energy Loads.xlsx')
+	df1 = pd.read_excel('CANDev2020 Energy Loads.xlsx')
+	df2=pd.DataFrame()
+	df2.insert (1,'Energy','EnergyTest')
+	df1.to_excel(writer,startrow=0,index=False)
+	df2.to_excel(writer,startrow=len(df1)+1,header=False,index=False)
+	writer.save()
 
 	return 0
 
