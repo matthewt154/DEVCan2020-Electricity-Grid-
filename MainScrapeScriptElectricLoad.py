@@ -1,11 +1,12 @@
 import requests 
+from bs4 import BeautifulSoup
 import bs4 
 import os
 #from apscheduler.schedulers 
 
 #0- Ontario, 1-Alberta, 2-Nova Scotia, 3-New Brunswick
 data_sources = ['http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet',
-				'http://reports.ieso.ca/public/GenOutputbyFuelHourly/',
+				'Generator Output by Fuel Type Hourly Report.xml',
 				'https://www.nspower.ca/oasis/monthly-reports/hourly-total-net-nova-scotia-load',
 				'https://tso.nbpower.com/Public/en/system_information_archive.aspx']
 
@@ -19,13 +20,38 @@ def scrapeAlberta(source):
 
 def scrapeOntario(source):
 	'''
-	1-Open correct XML file from source page (do we want past analysis too?)
+	1-Download correct XML file from source page (onto machine)
 	2- Isolate correct date and time column from XML
 	3- Get value (TOTAL OUTPUT) from last column
 	4- Write to .csv file in correct column
 	'''
-	int value
-	 
+
+	#TO_DO download 
+	
+	content = []
+	# Read the XML file
+	with open(source, "r") as file:
+	    # Read each line in the file, readlines() returns a list of lines
+	    content = file.readlines()
+	    # Combine the lines in the list into a string
+	    content = "".join(content)
+	    #print(content)
+	    bs_content = bs(content, "lxml")
+	result =bs_content.find_all("energyvalue")
+	#print (result)
+	newres = []
+	for all in result:
+		newres.append(int(all.find("output").get_text()))
+	#print(newres)
+	finalOutput=[]
+	while (newres):
+		sum=0
+		for i in range(6):
+			sum+=newres.pop() #add all 6 columns of energy types for final load 
+		finalOutput.append(sum)
+	finalOutput.reverse()
+	print(finalOutput)
+
 	return 0
 
 def scrapeNB(source):
